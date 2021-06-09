@@ -1,32 +1,66 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="nav">
+      <ul>
+        <li>{{ $t("nav.home") }}</li>
+        <li>{{ $t("nav.company") }}</li>
+      </ul>
+      <button class="btn" @click="chlanguage">中文/English</button>
+      
     </div>
-    <router-view/>
+    <div class="content">
+      <p style="font-size: 16px; text-align: center; display:inline-block">{{ $t("nav.content") }}</p>
+    </div>
+    
+   
   </div>
 </template>
+<script>
+export default{
+  methods: {
+    chlanguage(){
+      console.log(this.$i18n.locale);
+      let language = this.$i18n.locale === 'zh' ? 'en' : 'zh'
+      this.$i18n.locale = language
+    },
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
+
+
+</script>
+<style lang="less">
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  li{
+    list-style: none;
+  }
+  .nav{
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 100px;
+    ul{
+      float: left;
+      height: 60px;
+      line-height: 60px;
+      li{
+        float: left;
+        width: 200px;
+        text-align: center;
+      }
+    }
+    .btn{
+      width: 100px;
+      height: 50px;
+      background-color: green;
+      border-radius: 6px;
+      float: right;
+    }
+  }
+  .content{
+    text-align: center;
+  }
 </style>
